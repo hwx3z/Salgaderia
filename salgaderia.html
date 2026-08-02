@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fábrica de Salgados RV Delícias — Curicica, RJ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Fraunces:ital,wght@0,500;1,500;1,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2B1B12;
+    --paper:#FBF1DE;
+    --paper-2:#F3E4C4;
+    --crust:#D9A441;
+    --crust-dark:#B87F27;
+    --oven:#B23A2E;
+    --festa:#3F7A5E;
+    --festa-dark:#2E5C46;
+    --line: rgba(43,27,18,0.16);
+    --max: 1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Big Shoulders Display',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    margin:0;
+    line-height:0.95;
+  }
+
+  .quote{font-family:'Fraunces',serif; font-style:italic;}
+  .mono{font-family:'Space Mono',monospace;}
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  section{padding:72px 24px;}
+  .wrap{max-width:var(--max); margin:0 auto;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.75;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink);
+    border-bottom:3px solid var(--crust);
+  }
+  .nav-inner{
+    max-width:var(--max); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    gap:16px;
+  }
+  .brand{
+    color:var(--paper);
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:20px;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .brand span{color:var(--crust);}
+  .tabs{
+    display:flex; gap:4px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tabs a{
+    color:var(--paper);
+    opacity:0.72;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    padding:8px 12px;
+    border-radius:999px;
+    white-space:nowrap;
+    transition:opacity .15s ease, background .15s ease;
+  }
+  .tabs a:hover, .tabs a:focus-visible{opacity:1; background:rgba(217,164,65,0.18);}
+  .tabs a:focus-visible{outline:2px solid var(--crust); outline-offset:2px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 90% -10%, rgba(217,164,65,0.35), transparent 55%),
+      var(--ink);
+    color:var(--paper);
+    padding-bottom:110px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:auto 0 0 0; height:14px;
+    background:repeating-linear-gradient(-45deg, var(--crust) 0 14px, var(--crust-dark) 14px 28px);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap:40px;
+    align-items:start;
+    padding-top:56px;
+  }
+  .hero h1{
+    color:var(--paper);
+    font-size:clamp(40px, 6vw, 72px);
+    font-weight:800;
+    margin-top:10px;
+    animation:riseIn .7s ease both;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .rating-row{
+    display:flex; align-items:center; gap:10px;
+    margin-top:20px;
+    font-size:15px;
+  }
+  .stars{display:inline-flex; gap:2px;}
+  .stars svg{width:18px; height:18px;}
+  .status-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:18px;
+    background:rgba(251,241,222,0.08);
+    border:1px solid rgba(251,241,222,0.25);
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:13px;
+  }
+  .status-dot{width:8px; height:8px; border-radius:50%; background:var(--oven); box-shadow:0 0 0 3px rgba(178,58,46,0.25);}
+  .hero address{
+    font-style:normal;
+    margin-top:16px;
+    font-size:15px;
+    opacity:0.85;
+    max-width:34ch;
+    line-height:1.5;
+  }
+  .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter',sans-serif;
+    font-weight:600; font-size:14px;
+    padding:13px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:focus-visible{outline:2px solid var(--crust); outline-offset:3px;}
+  .btn-primary{background:var(--festa); color:var(--paper);}
+  .btn-primary:hover{background:var(--festa-dark);}
+  .btn-ghost{border-color:rgba(251,241,222,0.4); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--crust); background:rgba(217,164,65,0.12);}
+
+  /* ---------- TICKET (signature element) ---------- */
+  .ticket-wrap{
+    position:relative; z-index:5;
+    margin-top:8px;
+  }
+  .ticket{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:4px;
+    padding:26px 24px 30px;
+    box-shadow:0 24px 50px -18px rgba(0,0,0,0.55);
+    transform:rotate(1.6deg);
+    animation:riseIn .8s ease .15s both;
+  }
+  .ticket-notch{
+    height:12px;
+    background-image: radial-gradient(circle at 12px 0, transparent 7px, var(--ink) 7.5px);
+    background-size:24px 12px;
+    background-repeat:repeat-x;
+    margin:-26px -24px 16px;
+  }
+  .ticket-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:11px;
+    letter-spacing:0.1em;
+    padding-bottom:12px;
+    border-bottom:1px dashed var(--line);
+  }
+  .ticket-score{
+    display:flex; align-items:baseline; gap:10px;
+    margin-top:16px;
+  }
+  .ticket-score .num{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:56px;
+    line-height:0.8;
+  }
+  .ticket-score .stars svg{width:16px; height:16px;}
+  .ticket-score .count{font-size:12px; opacity:0.65;}
+  .ticket hr{border:none; border-top:1px dashed var(--line); margin:16px 0;}
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(63,122,94,0.12);
+    color:var(--festa-dark);
+    border:1px solid rgba(63,122,94,0.3);
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:12.5px;
+    font-weight:600;
+    line-height:1.35;
+  }
+  .ticket-foot{
+    margin-top:16px;
+    font-size:11.5px;
+    opacity:0.6;
+    letter-spacing:0.05em;
+  }
+
+  /* ---------- SOBRE ---------- */
+  .sobre{
+    padding-top:64px;
+  }
+  .sobre .eyebrow{margin-bottom:14px;}
+  .sobre h2{font-size:34px; max-width:16ch;}
+  .sobre p{font-size:17px; line-height:1.65; max-width:62ch; margin-top:18px;}
+  .sobre p + p{margin-top:14px;}
+
+  /* ---------- CARDÁPIO ---------- */
+  .cardapio{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .cardapio h2{font-size:38px; margin-bottom:6px;}
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px;
+    margin-top:32px;
+  }
+  .menu-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:22px 18px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .menu-card:hover{transform:translateY(-4px); box-shadow:0 14px 28px -14px rgba(43,27,18,0.25);}
+  .menu-card .ico{width:30px; height:30px; margin-bottom:14px; color:var(--oven);}
+  .menu-card h3{
+    font-family:'Inter',sans-serif; text-transform:none;
+    font-weight:700; font-size:16px; letter-spacing:0;
+  }
+  .menu-card p{font-size:13.5px; opacity:0.75; line-height:1.5; margin:8px 0 0;}
+  .menu-card.cta{
+    display:flex; flex-direction:column; justify-content:center;
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+  }
+  .menu-card.cta a{
+    color:var(--paper); text-decoration:none; font-weight:700; font-size:14.5px;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .menu-card.cta p{opacity:0.7; color:var(--paper);}
+
+  /* ---------- AVALIAÇÕES ---------- */
+  .aval-top{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:36px;
+    align-items:start;
+    padding-top:64px;
+  }
+  .aval-summary .num{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:88px;
+    line-height:0.85;
+  }
+  .aval-summary .stars svg{width:22px; height:22px;}
+  .aval-summary .count{margin-top:6px; font-size:14px; opacity:0.65;}
+
+  .quotes{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .quote-card{
+    padding:22px;
+    border-radius:10px;
+    font-size:17px;
+    line-height:1.5;
+  }
+  .quote-card.pos{background:rgba(63,122,94,0.1); border:1px solid rgba(63,122,94,0.28);}
+  .quote-card.neg{background:rgba(178,58,46,0.08); border:1px solid rgba(178,58,46,0.25);}
+  .quote-card footer{
+    margin-top:12px; font-family:'Inter',sans-serif; font-style:normal;
+    font-size:12.5px; opacity:0.65; font-weight:600;
+  }
+
+  .review-list{margin-top:40px; display:flex; flex-direction:column; gap:0;}
+  .review{
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:44px 1fr;
+    gap:16px;
+  }
+  .review:last-child{border-bottom:1px solid var(--line);}
+  .avatar{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--crust);
+    color:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:17px;
+  }
+  .review-meta{font-size:13px; opacity:0.65; margin-top:2px;}
+  .review-stars{margin:8px 0 10px;}
+  .review-stars svg{width:15px; height:15px;}
+  .review p{font-size:15px; line-height:1.6; max-width:64ch;}
+  .review-reply{
+    margin-top:14px; padding:12px 14px;
+    background:var(--paper-2);
+    border-left:3px solid var(--crust);
+    border-radius:0 6px 6px 0;
+    font-size:13.5px;
+  }
+  .review-reply b{font-size:12px; text-transform:uppercase; letter-spacing:0.04em; opacity:0.6; display:block; margin-bottom:3px;}
+  .more-link{
+    display:inline-block; margin-top:24px;
+    font-weight:600; font-size:14px;
+    text-decoration:underline; text-underline-offset:3px;
+  }
+
+  /* ---------- LOCALIZAÇÃO ---------- */
+  .local{background:var(--ink); color:var(--paper);}
+  .local h2{color:var(--paper); font-size:36px;}
+  .local-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    margin-top:32px;
+    align-items:stretch;
+  }
+  .local-card{
+    background:rgba(251,241,222,0.05);
+    border:1px solid rgba(251,241,222,0.16);
+    border-radius:10px;
+    padding:24px;
+  }
+  .local-card h3{
+    font-family:'Inter',sans-serif; text-transform:none; letter-spacing:0;
+    font-size:13px; opacity:0.6; font-weight:600; margin-bottom:10px;
+  }
+  .local-card .val{font-size:16px; line-height:1.5;}
+  .local-card + .local-card{margin-top:16px;}
+  .hours-row{display:flex; justify-content:space-between; font-size:14.5px; padding:8px 0; border-bottom:1px dashed rgba(251,241,222,0.15);}
+  .hours-row:last-child{border-bottom:none;}
+  .map-frame{
+    border-radius:10px; overflow:hidden; border:1px solid rgba(251,241,222,0.16);
+    min-height:340px;
+  }
+  .map-frame iframe{width:100%; height:100%; min-height:340px; border:0; filter:grayscale(0.15) contrast(1.05);}
+
+  /* ---------- FOOTER ---------- */
+  footer.site{
+    background:var(--ink); color:var(--paper);
+    padding:36px 24px 28px;
+    border-top:3px solid var(--crust);
+  }
+  .foot-inner{
+    max-width:var(--max); margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .foot-inner .brand{font-size:16px;}
+  .foot-note{font-size:12px; opacity:0.55; max-width:60ch; line-height:1.6;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    section{padding:52px 20px;}
+    .hero-grid{grid-template-columns:1fr; gap:24px; padding-top:32px;}
+    .hero{padding-bottom:70px;}
+    .ticket{transform:rotate(0.6deg);}
+    .card-grid{grid-template-columns:1fr 1fr;}
+    .aval-top{grid-template-columns:1fr; gap:22px;}
+    .quotes{grid-template-columns:1fr;}
+    .local-grid{grid-template-columns:1fr;}
+    .review{grid-template-columns:36px 1fr;}
+  }
+  @media (max-width: 480px){
+    .card-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">RV <span>DELÍCIAS</span></a>
+    <div class="tabs">
+      <a href="#top">Visão geral</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#sobre">Sobre</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Serviço de catering · Curicica, Rio de Janeiro</p>
+        <h1>Fábrica de<br>Salgados<br>RV Delícias</h1>
+
+        <div class="rating-row">
+          <span class="stars" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="var(--crust)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--crust)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--crust)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="var(--crust)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="rgba(251,241,222,0.25)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          </span>
+          <span class="mono">3,8 · 35 avaliações</span>
+        </div>
+
+        <div class="status-pill">
+          <span class="status-dot"></span> Fecha em breve · hoje às 19:00 · abre domingo às 11:00
+        </div>
+
+        <address>R. Goianinha, 23 — Curicica, Rio de Janeiro - RJ, 22780-760</address>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://wa.me/5521964469645" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.4 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.1-.4-.2z"/></svg>
+            Pedir pelo WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&destination=R.%20Goianinha%2C%2023%20-%20Curicica%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022780-760" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.4-2.7A1 1 0 013 16.4V5.6a1 1 0 011.4-.9L9 7m0 13l6-3m-6 3V7m6 10l4.6 2.3a1 1 0 001.4-.9V7.6a1 1 0 00-.6-.9L15 4m0 13V4m0 0L9 7"/></svg>
+            Como chegar
+          </a>
+          <a class="btn btn-ghost" href="tel:+5521964469645">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .7 3a2 2 0 01-.4 2.1L8 10.3a16 16 0 006 6l1.5-1.5a2 2 0 012.1-.4c1 .4 2 .6 3 .7a2 2 0 011.7 2z"/></svg>
+            (21) 96446-9645
+          </a>
+        </div>
+      </div>
+
+      <div class="ticket-wrap">
+        <div class="ticket">
+          <div class="ticket-notch" aria-hidden="true"></div>
+          <div class="ticket-head mono">
+            <span>COMANDA</span><span>Nº 001</span>
+          </div>
+          <div class="ticket-score">
+            <span class="num">3,8</span>
+            <div>
+              <span class="stars" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="var(--crust-dark)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                <svg viewBox="0 0 20 20" fill="var(--crust-dark)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                <svg viewBox="0 0 20 20" fill="var(--crust-dark)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                <svg viewBox="0 0 20 20" fill="var(--crust-dark)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                <svg viewBox="0 0 20 20" fill="var(--line)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+              </span>
+              <div class="count mono">35 avaliações no Google</div>
+            </div>
+          </div>
+          <hr>
+          <span class="badge">🎀 Se identifica como empresa de empreendedoras</span>
+          <div class="ticket-foot mono">CURICICA · RIO DE JANEIRO — RJ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="sobre" id="sobre">
+  <div class="wrap sobre">
+    <p class="eyebrow">Sobre a fábrica</p>
+    <div>
+      <h2>Salgado de festa,<br>direto do bairro.</h2>
+      <p>A RV Delícias é uma fábrica de salgados congelados em Curicica, tocada por empreendedoras e feita sob encomenda para festas de aniversário, festinhas infantis e eventos. O forte da casa são os congelados prontos para assar ou fritar na hora do evento — como mini esfirra, mini pizza e cachorro-quente.</p>
+      <p>Clientes acompanham a fábrica há anos e costumam repetir o pedido a cada nova festa — a forma mais direta de fechar um pedido é chamando no WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cardapio" id="cardapio">
+  <div class="wrap">
+    <p class="eyebrow">Cardápio</p>
+    <h2>Os queridinhos da festa</h2>
+    <div class="card-grid">
+      <div class="menu-card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 0116 0z"/><path d="M2 12h20M6 12v2M12 12v3M18 12v2"/></svg>
+        <h3>Mini esfirra</h3>
+        <p>Congelada, prontinha para assar no dia da festa.</p>
+      </div>
+      <div class="menu-card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1"/><circle cx="14" cy="9" r="1"/><circle cx="13" cy="14" r="1"/></svg>
+        <h3>Mini pizza</h3>
+        <p>Tamanho porção individual, ideal para mesa de festa.</p>
+      </div>
+      <div class="menu-card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="10" width="18" height="5" rx="2.5"/><path d="M7 10V8a2 2 0 012-2h6a2 2 0 012 2v2"/></svg>
+        <h3>Cachorro-quente</h3>
+        <p>Mini hot-dog congelado, no ponto de esquentar e servir.</p>
+      </div>
+      <div class="menu-card cta">
+        <p>Cardápio completo, sabores e valores atualizados</p>
+        <a href="https://wa.me/5521964469645" target="_blank" rel="noopener">Consultar no WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avaliacoes">
+  <div class="wrap">
+    <div class="aval-top">
+      <div class="aval-summary">
+        <p class="eyebrow">Avaliações</p>
+        <div class="num">3,8</div>
+        <span class="stars" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="var(--crust-dark)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="var(--crust-dark)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="var(--crust-dark)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="var(--crust-dark)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="var(--line)"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+        </span>
+        <div class="count">a partir de 35 avaliações no Google</div>
+      </div>
+
+      <div class="quotes quotes-single">
+        <div class="quote-card pos quote">
+          "Comprei os congelados de mini esfirra, mini pizza e cachorro quente — todos na festinha adoraram."
+          <footer>Márcia Bernardini · Local Guide</footer>
+        </div>
+        <div class="quote-card pos quote">
+          "Nos últimos 4 anos tenho comprado os salgados deles, e sempre fico satisfeita."
+          <footer>Lia Rodrigues · Local Guide</footer>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-list">
+      <div class="review">
+        <div class="avatar">M</div>
+        <div>
+          <strong>Márcia Bernardini</strong>
+          <div class="review-meta">Local Guide · 95 avaliações · 15 fotos · 2 anos atrás</div>
+          <div class="review-stars" aria-hidden="true">★★★★★</div>
+          <p>Comprei os congelados de mini esfirra, mini pizza e cachorro quente. Todos na festinha adoraram. Preço super bom também. Recomendo.</p>
+          <div class="review-reply"><b>Resposta do proprietário</b>Muito obg</div>
+        </div>
+      </div>
+
+      <div class="review">
+        <div class="avatar">L</div>
+        <div>
+          <strong>Lia Rodrigues</strong>
+          <div class="review-meta">Local Guide · 49 avaliações · 1 foto · 6 anos atrás</div>
+          <div class="review-stars" aria-hidden="true">★★★★★</div>
+          <p>Nos últimos 4 anos tenho comprado os salgados deles, e sempre fico satisfeita. Recomendo.</p>
+          <div class="review-reply"><b>Resposta do proprietário</b>Muito obg</div>
+        </div>
+      </div>
+    </div>
+
+    <a class="more-link" href="#">Ver mais avaliações (33) →</a>
+  </div>
+</section>
+
+<section class="local" id="local">
+  <div class="wrap">
+    <p class="eyebrow">Localização &amp; horário</p>
+    <h2>Onde buscar seu pedido</h2>
+    <div class="local-grid">
+      <div>
+        <div class="local-card">
+          <h3>Endereço</h3>
+          <div class="val">R. Goianinha, 23<br>Curicica, Rio de Janeiro - RJ<br>22780-760</div>
+        </div>
+        <div class="local-card">
+          <h3>Código Plus</h3>
+          <div class="val mono">2JX9+R9 Curicica, Rio de Janeiro - RJ</div>
+        </div>
+        <div class="local-card">
+          <h3>Funcionamento</h3>
+          <div class="hours-row"><span>Hoje</span><span>fecha às 19:00</span></div>
+          <div class="hours-row"><span>Domingo</span><span>abre às 11:00</span></div>
+          <div class="hours-row"><span>Demais dias</span><span>confirmar no WhatsApp</span></div>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=R.+Goianinha,+23+-+Curicica,+Rio+de+Janeiro+-+RJ,+22780-760&output=embed"
+          title="Mapa — R. Goianinha, 23, Curicica, Rio de Janeiro">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="foot-inner">
+    <a class="brand" href="#top">RV <span>DELÍCIAS</span></a>
+    <a class="btn btn-primary" href="https://wa.me/5521964469645" target="_blank" rel="noopener">Pedir pelo WhatsApp</a>
+  </div>
+  <p class="foot-note" style="margin-top:18px;">Página não-oficial, montada a partir de informações públicas de perfil no Google Maps (nome, endereço, horário, cardápio e avaliações). Para pedidos e valores atualizados, fale direto no WhatsApp da fábrica.</p>
+</footer>
+
+</body>
+</html>
